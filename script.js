@@ -1,11 +1,61 @@
-const scroll = new LocomotiveScroll({
-  el: document.querySelector("#main"),
-  smooth: true,
+document.body.classList.add("loading");
+let scroll;
+
+function initScroll() {
+  scroll = new LocomotiveScroll({
+    el: document.querySelector("#main"),
+    smooth: true,
+  });
+}
+
+function loaderAnimation() {
+
+  const tl = gsap.timeline({
+    onComplete: () => {
+
+    document.querySelector("#preloader").remove();
+
+    document.body.classList.remove("loading");
+
+    gsap.set("#main", { opacity: 1 });
+
+    initScroll();
+
+    setTimeout(() => {
+      scroll.update();
+      firstPageAnim();
+    }, 200);
+  }
+  });
+
+  tl.to(".loader-text", {
+    y: 0,
+    duration: 1.2,
+    stagger: 0.2,
+    ease: "power4.out"
+  })
+
+  .to({}, { duration: 0.4 })
+
+  .to(".loader-panel", {
+    y: "-100%",
+    duration: 1.2,
+    ease: "power4.inOut"
+  })
+
+  .to("#preloader", {
+    y: "-100%",
+    duration: 1,
+    ease: "power4.inOut"
+  }, "-=1");
+
+}
+
+
+window.addEventListener("load", function() {
+  loaderAnimation();
 });
 
-window.addEventListener("load", () => {
-  scroll.update();
-});
 
 function firstPageAnim(){
   var tl = gsap.timeline();
@@ -16,7 +66,7 @@ function firstPageAnim(){
     duration: 1.5,
     ease: Expo.easeInOut
   })
-  .to(".boundingelem", {
+  .to("#hero", {
     y: 0,
     ease: Expo.easeInOut,
     duration: 2,
@@ -30,42 +80,47 @@ function firstPageAnim(){
     duration: 1.5,
     ease: Expo.easeInOut
   })
+
+  console.log("Hero Animation Running");  
 }
 var timeout;
 
-function circleSkew(){
-  var xscale = 1;
-  var yscale = 1;
+function circleSkew() {
+  let timeout;
+  let xprev = 0;
+  let yprev = 0;
 
-  var xprev = 0;
-  var yprev = 0;
+  window.addEventListener("mousemove", function (dets) {
 
-  window.addEventListener("mousemove", function(dets){
     clearTimeout(timeout);
 
-    xscale = gsap.utils.clamp(.8, 1.2, dets.clientX - xprev);
-    yscale = gsap.utils.clamp(.8, 1.2, dets.clientY - yprev);
+    let xscale = gsap.utils.clamp(.8, 1.2, dets.clientX - xprev);
+    let yscale = gsap.utils.clamp(.8, 1.2, dets.clientY - yprev);
 
     xprev = dets.clientX;
     yprev = dets.clientY;
 
-    circleMouseFollower(xscale, yscale);
+    gsap.to("#minicircle", {
+      x: dets.clientX,
+      y: dets.clientY,
+      scaleX: xscale,
+      scaleY: yscale,
+      duration: 0.2,
+      ease: "power3.out"
+    });
 
-    timeout = setTimeout(function(){
-      document.querySelector("#minicircle").style.transform = `translate(${dets.clientX}px, ${dets.clientY}px) scale(1,1)`;
+    timeout = setTimeout(function () {
+      gsap.to("#minicircle", {
+        scaleX: 1,
+        scaleY: 1,
+        duration: 0.5,
+        ease: "power3.out"
+      });
     }, 100);
   });
 }
 
-function circleMouseFollower(xscale, yscale){
-  window.addEventListener("mousemove", function(dets){
-    document.querySelector("#minicircle").style.transform = `translate(${dets.clientX}px, ${dets.clientY}px) scale(${xscale}, ${yscale})`;
-  });
-}
-
-circleSkew()
-circleMouseFollower()
-firstPageAnim()
+circleSkew();
 
 document.querySelectorAll(".elem").forEach(function(elem){
   let rotate = 0;

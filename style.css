@@ -31,16 +31,65 @@
   box-sizing: border-box;
 }
 
-html{
-   width: 100%;
-  height: 100%;
+html {
+  scroll-behavior: auto;
 }
 
-body{
-  width: 100%;
-  height: 100%;
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* only hide horizontal */
+}
+body.loading {
+  overflow: hidden;
+  height: 100vh;
+}
+
+
+html.has-scroll-smooth {
   overflow: hidden;
 }
+
+body.has-scroll-smooth {
+  overflow: hidden;
+}
+
+
+/* =========================
+   PRELOADER
+========================= */
+
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loader-content {
+  text-align: center;
+}
+
+.loader-text {
+  color: #fff;
+  font-size: 10vw;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* panel that reveals the page */
+.loader-panel {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform: translateY(100%);
+}
+
+/* Main Page  */
 
 #minicircle{
   transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
@@ -64,6 +113,10 @@ body{
 #main{
   width: 100%;
   background-color: black;
+}
+
+#main{
+  opacity: 0;
 }
 
 #hero{

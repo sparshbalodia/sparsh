@@ -2,6 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-graphite-950 text-platinum-50 antialiased;
+/* -----------------------
+   Base Layer
+----------------------- */
+@font-face {
+  font-family: "RF Dewi";
+  src: url("/fonts/RFDewi-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RF Dewi";
+  src: url("/fonts/RFDewi-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RF Dewi";
+  src: url("/fonts/RFDewi-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "RF Dewi", sans-serif;
+    background-color: #111113;
+    color: #f1f2f4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button {
+    @apply bg-transparent border-0 cursor-pointer;
+  }
+}
+
+
+
+/* -----------------------
+   Scrollbar Styling
+----------------------- */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111113; /* graphite-950 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #313135; /* graphite-800 */
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #494950; /* graphite-700 */
 }

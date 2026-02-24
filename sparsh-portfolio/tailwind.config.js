@@ -18,6 +18,9 @@ export default {
           800: "#313335",
         },
       },
+      fontFamily: {
+        dewi: ["RF Dewi", "sans-serif"],
+      },
     },
   },
   plugins: [],

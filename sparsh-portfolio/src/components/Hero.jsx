@@ -54,7 +54,7 @@ export default function Hero() {
                              font-bold
                              uppercase
                              tracking-tight
-                             text-grey-400">
+                             text-gray-400">
                   Developer
                 </h1>
               </div>
@@ -65,7 +65,7 @@ export default function Hero() {
                              uppercase
                              tracking-widest
                              text-xs md:text-sm
-                             text-grey-500
+                             text-gray-500
                              mt-3
                              text-right">
                   Based in India
@@ -78,16 +78,59 @@ export default function Hero() {
         </div>
 
         {/* ===================== AVAILABILITY BLOCK ===================== */}
-        <div className="absolute right-6 md:right-8 lg:right-12 xl:right-16 top-[45vh] text-right">
+        <div className="absolute right-6 md:right-8 lg:right-12 xl:right-16 bottom-[28vh] text-right">
 
           <div className="overflow-hidden">
-            <h5 className="boundingelem uppercase tracking-widest text-grey-400 text-xs md:text-sm">
+            <h5 className="boundingelem uppercase tracking-widest text-gray-400 text-xs md:text-sm">
               Available for full time & freelance
             </h5>
           </div>
 
         </div>
 
+        {/* ================= HERO FOOTER ================= */}
+<div className="absolute bottom-10 left-0 w-full px-6 md:px-8 lg:px-12 xl:px-16">
+
+  <div className="flex items-center">
+
+    {/* LEFT — GITHUB */}
+    <div className="flex-1">
+      <a href="#" className="relative group gap-1 uppercase tracking-widest text-xs md:text-sm text-grey-400 hover:text-platinum-50 transition-colors duration-300">
+        <span className="relative">
+          Github
+          <span className="absolute left-0 -bottom-1 h-[1px] w-0 bg-platinum-50 transition-all duration-300 group-hover:w-full" />
+        </span>
+        <i className="ri-arrow-right-up-line text-sm ml-2" />
+      </a>
+    </div>
+
+    {/* CENTER — LINKEDIN */}
+    <div className="flex-1 flex justify-center">
+      <a href="#" className="relative group gap-1 uppercase tracking-widest text-xs md:text-sm text-grey-400 hover:text-platinum-50 transition-colors duration-300"
+      >
+        <span className="relative">
+        Linkedin
+        <span className="absolute left-0 -bottom-1 h-[1px] w-0 bg-platinum-50 transition-all duration-300 group-hover:w-full"/>
+        </span>
+        <i className="ri-arrow-right-up-line text-sm" />
+      </a>
+    </div>
+
+    {/* RIGHT — ICON SET */}
+    <div className="flex-1 flex justify-end gap-1">
+
+      <button className="group w-10 h-10 rounded-full border border-grey-800 flex items-center justify-center hover:border-platinum-50 transition-all duration-300">
+        <i className="ri-arrow-down-line text-base group-hover:translate-y-1 transition-transform duration-300" />
+      </button>
+
+      <button className="group w-10 h-10 rounded-full border border-grey-800 flex items-center justify-center hover:border-platinum-50 transition-all duration-300">
+        <i className="ri-arrow-down-line text-base group-hover:translate-y-1 transition-transform duration-300" />
+      </button>
+
+    </div>
+
+  </div>
+</div>
       </div>
     </section>
   );

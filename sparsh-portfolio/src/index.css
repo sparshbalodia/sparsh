@@ -5,33 +5,36 @@
 /* -----------------------
    Base Layer
 ----------------------- */
-@font-face {
-  font-family: "RF Dewi";
-  src: url("/fonts/RFDewi-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "RF Dewi";
-  src: url("/fonts/RFDewi-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "RF Dewi";
-  src: url("/fonts/RFDewi-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 @layer base {
+  /* — Fonts — */
+  @font-face {
+    font-family: "RF Dewi";
+    src: url("/fonts/RFDewi-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "RF Dewi";
+    src: url("/fonts/RFDewi-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "RF Dewi";
+    src: url("/fonts/RFDewi-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* — Base Styles — */
   html {
-    scroll-behavior: smooth;
+    /* Removed scroll-behavior: smooth — Lenis handles all smooth scrolling.
+       Keeping it here causes double-smoothing and laggy scroll conflicts. */
   }
 
   body {
@@ -45,14 +48,33 @@
   button {
     @apply bg-transparent border-0 cursor-pointer;
   }
+
+  /* — Reduced Motion — */
+  /* Respects OS-level accessibility setting. Disables all animations
+     for users who have "Reduce Motion" enabled. GSAP checks this too
+     if you pass gsap.matchMedia(), but this is a CSS safety net. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
-
-
 
 /* -----------------------
    Scrollbar Styling
 ----------------------- */
 
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #313135 #111113; /* thumb / track */
+}
+
+/* Chrome, Safari, Edge */
 ::-webkit-scrollbar {
   width: 8px;
 }

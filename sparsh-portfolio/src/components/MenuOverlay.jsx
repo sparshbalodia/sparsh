@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 
 const MENU_LINKS = [
   { label: "Home",    href: "#home" },
-  { label: "Work",    href: "#work" },
+  { label: "Projects",    href: "#Project" },
   { label: "About",   href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
@@ -67,12 +67,6 @@ export default function MenuOverlay({ isOpen, setIsOpen }) {
       aria-label="Navigation menu"
       className="fixed inset-0 z-[1001] bg-graphite-950 overflow-hidden"
     >
-      {/*
-        Layout: 3-row grid — close button / nav links / footer
-        Using grid instead of flex justify-between so each row
-        gets a predictable slice of the screen height.
-        h-screen with overflow-hidden prevents any bleed.
-      */}
       <div className="w-full h-screen px-6 md:px-8 lg:px-12 xl:px-16
                       grid grid-rows-[auto_1fr_auto] py-8 md:py-12">
 

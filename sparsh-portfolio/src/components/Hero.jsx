@@ -95,7 +95,7 @@ export default function Hero() {
 
     {/* LEFT — GITHUB */}
     <div className="flex-1">
-      <a href="#" className="relative group gap-1 uppercase tracking-widest text-xs md:text-sm text-grey-400 hover:text-platinum-50 transition-colors duration-300">
+      <a href="https://github.com/sparshbalodia/" target="_blank" rel="noopener noreferre" className="relative group gap-1 uppercase tracking-widest text-xs md:text-sm text-grey-400 hover:text-platinum-50 transition-colors duration-300">
         <span className="relative">
           Github
           <span className="absolute left-0 -bottom-1 h-[1px] w-0 bg-platinum-50 transition-all duration-300 group-hover:w-full" />
@@ -106,7 +106,7 @@ export default function Hero() {
 
     {/* CENTER — LINKEDIN */}
     <div className="flex-1 flex justify-center">
-      <a href="#" className="relative group gap-1 uppercase tracking-widest text-xs md:text-sm text-grey-400 hover:text-platinum-50 transition-colors duration-300"
+      <a href="https://linkedin.com/in/sparshbalodia" target="_blank" rel="noopener noreferre" className="relative group gap-1 uppercase tracking-widest text-xs md:text-sm text-grey-400 hover:text-platinum-50 transition-colors duration-300"
       >
         <span className="relative">
         Linkedin

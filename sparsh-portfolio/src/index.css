@@ -39,6 +39,7 @@
 
   body {
     font-family: "RF Dewi", sans-serif;
+    cursor: none;
     background-color: #111113;
     color: #f1f2f4;
     -webkit-font-smoothing: antialiased;

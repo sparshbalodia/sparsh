@@ -33,27 +33,35 @@
 
   /* — Base Styles — */
   html {
-    /* Removed scroll-behavior: smooth — Lenis handles all smooth scrolling.
-       Keeping it here causes double-smoothing and laggy scroll conflicts. */
+    /* scroll-behavior: smooth intentionally omitted —
+       Lenis owns all smooth scrolling. Keeping it causes
+       double-smoothing and conflicts. */
   }
 
   body {
     font-family: "RF Dewi", sans-serif;
-    cursor: none;
     background-color: #111113;
     color: #f1f2f4;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    cursor: none;
+  }
+
+  /* Force cursor: none on interactive elements*/
+  a,
+  button {
+    cursor: none;
   }
 
   button {
-    @apply bg-transparent border-0 cursor-pointer;
+    @apply bg-transparent border-0;
+  }
+
+  .nav-animate{
+    opacity: 1;
   }
 
   /* — Reduced Motion — */
-  /* Respects OS-level accessibility setting. Disables all animations
-     for users who have "Reduce Motion" enabled. GSAP checks this too
-     if you pass gsap.matchMedia(), but this is a CSS safety net. */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -66,29 +74,17 @@
 }
 
 /* -----------------------
-   Scrollbar Styling
+   Hide Scrollbar
+   Lenis uses transform-based virtual scrolling so the
+   native scrollbar is redundant. Hidden on all browsers.
 ----------------------- */
 
 /* Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: #313135 #111113; /* thumb / track */
+  scrollbar-width: none;
 }
 
 /* Chrome, Safari, Edge */
 ::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #111113; /* graphite-950 */
-}
-
-::-webkit-scrollbar-thumb {
-  background: #313135; /* graphite-800 */
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #494950; /* graphite-700 */
+  display: none;
 }

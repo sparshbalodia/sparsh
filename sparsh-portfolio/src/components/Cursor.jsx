@@ -79,7 +79,7 @@ export default function Cursor() {
     const onHoverIn = (e) => {
       if (e.target.closest("a, button")) {
         gsap.to(state, {
-          baseScale: 4,
+          baseScale: 2,
           duration: 0.3,
           ease: "power3.out",
         });

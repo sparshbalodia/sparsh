@@ -1,17 +1,18 @@
 import { useLayoutEffect, useEffect, useRef } from "react";
+import {Link} from "react-router-dom"
 import { gsap } from "gsap";
 
 const MENU_LINKS = [
-  { label: "Home",    href: "#home" },
-  { label: "Projects",    href: "#Project" },
-  { label: "About",   href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", type: "route", path: "/" },
+  { label: "Projects", type: "route", path: "/work" },
+  { label: "About", type: "scroll", id: "about" },
+  { label: "Contact", type: "route", path: "/contact" },
 ];
 
 export default function MenuOverlay({ isOpen, setIsOpen }) {
   const overlayRef = useRef();
 
-  // GSAP owns the initial off-screen position — no Tailwind translate class
+  
   useLayoutEffect(() => {
     gsap.set(overlayRef.current, { y: "-100%" });
   }, []);
@@ -68,38 +69,71 @@ export default function MenuOverlay({ isOpen, setIsOpen }) {
       className="fixed inset-0 z-[1001] bg-graphite-950 overflow-hidden"
     >
       <div className="w-full h-screen px-6 md:px-8 lg:px-12 xl:px-16
-                      grid grid-rows-[auto_1fr_auto] py-8 md:py-12">
+                      grid grid-rows-[auto_1fr_auto] pb-8 md:pb-12">
 
         {/* Row 1 — Close Button */}
-        <div className="flex justify-end items-center h-14">
+        <div className="flex justify-end items-center h-20">
           <button
             onClick={() => setIsOpen(false)}
             aria-label="Close menu"
-            className="uppercase tracking-widest text-sm text-gray-400 hover:text-platinum-50 transition-colors duration-300"
+            className="realtive group uppercase tracking-widest text-sm text-gray-400 hover:text-platinum-50 transition-colors duration-300"
           >
-            Close
+            <span className="relative">
+              Close
+              <span className="absolute left-0 -bottom-1 h-[1px] w-0 bg-platinum-50 transition-all duration-300 group-hover:w-full "/>
+            </span>
           </button>
         </div>
 
         {/* Row 2 — Nav Links (fills remaining space, vertically centered) */}
-        <nav
-          aria-label="Overlay navigation"
-          className="flex items-center"
-        >
+        <nav aria-label="Overlay navigation" className="flex items-center">
           <ul className="flex flex-col list-none m-0 p-0 w-full"
               style={{ gap: "clamp(0.25rem, 1.5vh, 1.5rem)" }}>
-            {MENU_LINKS.map(({ label, href }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  onClick={() => setIsOpen(false)}
-                  style={{ fontSize: "clamp(3rem, 10vw, 7rem)", lineHeight: 1 }}
-                  className="menu-item block font-bold uppercase tracking-tight
-                             text-gray-400 hover:text-platinum-50
-                             transition-colors duration-300"
-                >
-                  {label}
-                </a>
+            {MENU_LINKS.map((item) => (
+              <li key={item.label}>
+                {item.type === "route" ? (
+                  <Link
+                    to={item.path}
+                    onClick={() => setIsOpen(false)}
+                    style={{ fontSize: "clamp(3rem, 10vw, 7rem)", lineHeight: 1 }}
+                    className="menu-item relative group block font-bold uppercase tracking-tight
+                               text-gray-400 hover:text-platinum-50
+                               transition-colors duration-300"
+                  >
+                    <span className="relative">
+                    {item.label}
+                    <span className="absolute left-0 -bottom-0 h-[2px] w-0 bg-platinum-50 transition-all duration-500 group-hover:w-full"/>
+                    </span>
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                    
+                      if (location.pathname !== "/") {
+                        navigate("/");
+                        setTimeout(() => {
+                          document.getElementById(item.id)?.scrollIntoView({
+                            behavior: "smooth",
+                          });
+                        }, 400);
+                      } else {
+                        document.getElementById(item.id)?.scrollIntoView({
+                          behavior: "smooth",
+                        });
+                      }
+                    }}
+                    style={{ fontSize: "clamp(3rem, 10vw, 7rem)", lineHeight: 1 }}
+                    className="menu-item relative group block font-bold uppercase tracking-tight
+                               text-gray-400 hover:text-platinum-50
+                               transition-colors duration-300 text-left w-full"
+                  >
+                    <span className="relative">
+                    {item.label}
+                    <span className="absolute left-0 -bottom-0 h-[2px] w-0 bg-platinum-50 transition-all duration-500 group-hover:w-full "/>
+                    </span>
+                  </button>
+                )}
               </li>
             ))}
           </ul>

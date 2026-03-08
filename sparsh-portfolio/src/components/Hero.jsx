@@ -5,7 +5,6 @@ export default function Hero({ preloaderDone }) {
   const heroRef = useRef();
 
   // Step 1 — Always hide elements immediately on mount before any paint.
-  // This prevents the flash where hero is visible before preloader appears.
   useLayoutEffect(() => {
     gsap.set(".boundingelem", { opacity: 0, y: 120 });
   }, []);

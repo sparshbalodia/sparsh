@@ -104,7 +104,7 @@ export default function Cursor() {
 
     const onScroll = () => {
       gsap.to(state, {
-        scrollSquash: 0.6,
+        scrollSquash: 0.9,
         duration: 0.15,
         ease: "power2.out",
       });

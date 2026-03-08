@@ -1,23 +1,21 @@
 import { useLayoutEffect, useEffect, useRef } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 
 const MENU_LINKS = [
-  { label: "Home", type: "route", path: "/" },
-  { label: "Projects", type: "route", path: "/work" },
-  { label: "About", type: "scroll", id: "about" },
-  { label: "Contact", type: "route", path: "/contact" },
+  { label: "Home",     type: "route",  path: "/" },
+  { label: "Projects", type: "route",  path: "/work" },
+  { label: "About",    type: "scroll", id: "about" },
+  { label: "Contact",  type: "route",  path: "/contact" },
 ];
 
 export default function MenuOverlay({ isOpen, setIsOpen }) {
   const overlayRef = useRef();
 
-  
   useLayoutEffect(() => {
     gsap.set(overlayRef.current, { y: "-100%" });
   }, []);
 
-  // Escape key to close
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "Escape" && isOpen) setIsOpen(false);
@@ -31,30 +29,15 @@ export default function MenuOverlay({ isOpen, setIsOpen }) {
 
     if (isOpen) {
       document.body.style.overflow = "hidden";
-
-      gsap.to(overlayRef.current, {
-        y: 0,
-        duration: 0.9,
-        ease: "power4.inOut",
-      });
-
+      gsap.to(overlayRef.current, { y: 0, duration: 0.9, ease: "power4.inOut" });
       gsap.set(".menu-item", { y: 40, opacity: 0 });
       gsap.to(".menu-item", {
-        y: 0,
-        opacity: 1,
-        stagger: 0.08,
-        delay: 0.35,
-        duration: 0.8,
-        ease: "power3.out",
+        y: 0, opacity: 1, stagger: 0.08, delay: 0.35,
+        duration: 0.8, ease: "power3.out",
       });
     } else {
       document.body.style.overflow = "";
-
-      gsap.to(overlayRef.current, {
-        y: "-100%",
-        duration: 0.8,
-        ease: "power4.inOut",
-      });
+      gsap.to(overlayRef.current, { y: "-100%", duration: 0.8, ease: "power4.inOut" });
     }
   }, [isOpen]);
 
@@ -66,26 +49,13 @@ export default function MenuOverlay({ isOpen, setIsOpen }) {
       aria-modal={isOpen}
       aria-hidden={!isOpen}
       aria-label="Navigation menu"
-      className="fixed inset-0 z-[1001] bg-graphite-950 overflow-hidden"
+      className="fixed inset-0 z-[999] bg-graphite-950 overflow-hidden"
     >
+      {/* 2-row grid — no close button row, navbar handles open/close */}
       <div className="w-full h-screen px-6 md:px-8 lg:px-12 xl:px-16
-                      grid grid-rows-[auto_1fr_auto] pb-8 md:pb-12">
+                      grid grid-rows-[1fr_auto] pt-24 pb-8 md:pb-12">
 
-        {/* Row 1 — Close Button */}
-        <div className="flex justify-end items-center h-20">
-          <button
-            onClick={() => setIsOpen(false)}
-            aria-label="Close menu"
-            className="realtive group uppercase tracking-widest text-sm text-gray-400 hover:text-platinum-50 transition-colors duration-300"
-          >
-            <span className="relative">
-              Close
-              <span className="absolute left-0 -bottom-1 h-[1px] w-0 bg-platinum-50 transition-all duration-300 group-hover:w-full "/>
-            </span>
-          </button>
-        </div>
-
-        {/* Row 2 — Nav Links (fills remaining space, vertically centered) */}
+        {/* Row 1 — Nav Links */}
         <nav aria-label="Overlay navigation" className="flex items-center">
           <ul className="flex flex-col list-none m-0 p-0 w-full"
               style={{ gap: "clamp(0.25rem, 1.5vh, 1.5rem)" }}>
@@ -96,41 +66,38 @@ export default function MenuOverlay({ isOpen, setIsOpen }) {
                     to={item.path}
                     onClick={() => setIsOpen(false)}
                     style={{ fontSize: "clamp(3rem, 10vw, 7rem)", lineHeight: 1 }}
-                    className="menu-item relative group block font-bold uppercase tracking-tight
-                               text-gray-400 hover:text-platinum-50
+                    className="menu-item relative group block font-bold uppercase
+                               tracking-tight text-gray-400 hover:text-platinum-50
                                transition-colors duration-300"
                   >
                     <span className="relative">
-                    {item.label}
-                    <span className="absolute left-0 -bottom-0 h-[2px] w-0 bg-platinum-50 transition-all duration-500 group-hover:w-full"/>
+                      {item.label}
+                      <span className="absolute left-0 -bottom-0 h-[2px] w-0 bg-platinum-50
+                                       transition-all duration-500 group-hover:w-full" />
                     </span>
                   </Link>
                 ) : (
                   <button
                     onClick={() => {
                       setIsOpen(false);
-                    
                       if (location.pathname !== "/") {
                         navigate("/");
                         setTimeout(() => {
-                          document.getElementById(item.id)?.scrollIntoView({
-                            behavior: "smooth",
-                          });
+                          document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
                         }, 400);
                       } else {
-                        document.getElementById(item.id)?.scrollIntoView({
-                          behavior: "smooth",
-                        });
+                        document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
                       }
                     }}
                     style={{ fontSize: "clamp(3rem, 10vw, 7rem)", lineHeight: 1 }}
-                    className="menu-item relative group block font-bold uppercase tracking-tight
-                               text-gray-400 hover:text-platinum-50
+                    className="menu-item relative group block font-bold uppercase
+                               tracking-tight text-gray-400 hover:text-platinum-50
                                transition-colors duration-300 text-left w-full"
                   >
                     <span className="relative">
-                    {item.label}
-                    <span className="absolute left-0 -bottom-0 h-[2px] w-0 bg-platinum-50 transition-all duration-500 group-hover:w-full "/>
+                      {item.label}
+                      <span className="absolute left-0 -bottom-0 h-[2px] w-0 bg-platinum-50
+                                       transition-all duration-500 group-hover:w-full" />
                     </span>
                   </button>
                 )}
@@ -139,7 +106,7 @@ export default function MenuOverlay({ isOpen, setIsOpen }) {
           </ul>
         </nav>
 
-        {/* Row 3 — Footer Meta */}
+        {/* Row 2 — Footer Meta */}
         <div className="text-xs uppercase tracking-widest text-gray-500 pb-2">
           © 2026 Sparsh Balodia
         </div>

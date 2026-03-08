@@ -35,7 +35,9 @@ export default function Footer() {
       {/* Right — social links */}
       <div className="flex items-center gap-6 md:gap-8">
         {[
-          { label: "x",  href: "https://linkedin.com/in/sparshbalodia" },
+          { label: "LinkedIn",  href: "https://linkedin.com/in/sparshbalodia" },
+          { label: "Github",  href: "https://linkedin.com/in/sparshbalodia" },
+          { label: "x / Twitter",  href: "https://linkedin.com/in/sparshbalodia" },
           { label: "Instagram", href: "https://instagram.com/sparshbalodia" },
         ].map(({ label, href }) => (
           <a

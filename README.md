@@ -25,6 +25,7 @@ Built using **React (Vite), Tailwind CSS, and GSAP** to deliver smooth animation
 - Lenis
 
 #### Routing
+
 - React Router
 
 #### Other Tools

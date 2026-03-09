@@ -10,7 +10,7 @@ Built using **React (Vite), Tailwind CSS, and GSAP** to deliver smooth animation
 
 ## Preview
 
-![Portfolio Preview](./sparsh-portfolio/src/assets/preview.png)
+![Portfolio Preview](./sparsh-portfolio/src/assets/preview2.png)
 
 ---
 

@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 
 const MENU_LINKS = [
   { label: "Home",     type: "route",  path: "/" },
-  { label: "Projects", type: "route",  path: "/work" },
+  { label: "Projects", type: "route",  path: "/projects" },
   { label: "About",    type: "scroll", id: "about" },
   { label: "Contact",  type: "route",  path: "/contact" },
 ];

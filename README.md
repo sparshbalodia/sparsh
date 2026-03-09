@@ -52,3 +52,7 @@ Built using **React (Vite), Tailwind CSS, and GSAP** to deliver smooth animation
 💻 GitHub — [git clone my brain](https://github.com/sparshbalodia "Explore")
 
 📸 Instagram — [life.exe outside of work](https://instagram.com/sparshbalodia "IRL")
+
+## License
+
+MIT © [Sparsh Balodia](https://github.com/sparshbalodia)

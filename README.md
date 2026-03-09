@@ -45,10 +45,10 @@ Built using **React (Vite), Tailwind CSS, and GSAP** to deliver smooth animation
 
 ## Contact
 
-📧 Email — [console.log("hire me")](mailto:sparshbalodia1608@gmail.com "email")
+📧 Email — [console.log("hire me")](mailto:sparshbalodia1608@gmail.com "Hire?")
 
-💼 LinkedIn — [let me connect(); ](https://linkedin.com/in/sparshbalodia)
+💼 LinkedIn — [let me connect(); ](https://linkedin.com/in/sparshbalodia "Connect")
 
-💻 GitHub — [git clone my brain](https://github.com/sparshbalodia)
+💻 GitHub — [git clone my brain](https://github.com/sparshbalodia "Explore")
 
-📸 Instagram — [life.exe outside of work](https://instagram.com/sparshbalodia)
+📸 Instagram — [life.exe outside of work](https://instagram.com/sparshbalodia "IRL")

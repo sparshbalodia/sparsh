@@ -45,6 +45,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     cursor: none;
+    overflow-x: hidden;
+    max-width: 100%
+
   }
 
   /* Force cursor: none on interactive elements*/

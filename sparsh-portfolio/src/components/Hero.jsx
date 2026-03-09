@@ -20,7 +20,7 @@ export default function Hero({ preloaderDone }) {
         duration: 1.1,
         stagger: 0.15,
         ease: "power4.out",
-        delay: 0.2,
+        delay: 0.5,
       });
     }, heroRef);
 
@@ -28,7 +28,18 @@ export default function Hero({ preloaderDone }) {
   }, [preloaderDone]);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen pt-20">
+    <>
+    <div className="fixed inset-0 pointer-events-none z-0"
+      style={{
+        background: `
+          radial-gradient(ellipse 120% 40% at 60% 0%,   rgba(60,60,60,0.35) 0%, transparent 70%),
+          radial-gradient(ellipse 80%  60% at 62% 45%,  rgba(40,40,40,0.45) 0%, transparent 65%),
+          radial-gradient(ellipse 50%  35% at 85% 80%,  rgba(25,25,25,0.35) 0%, transparent 70%)`,
+        }}
+    />
+    <section ref={heroRef} className="relative min-h-screen pt-20 overflow-hidden w-full">
+      
+
       <div className="w-full px-6 md:px-8 lg:px-12 xl:px-16 h-full">
 
         {/* ===================== TOP TYPO BLOCK ===================== */}
@@ -47,7 +58,7 @@ export default function Hero({ preloaderDone }) {
             <div className="inline-block">
 
               <div className="overflow-hidden">
-                <h1 className="boundingelem text-[16vw] md:text-[10vw]
+                <h1 className="boundingelem text-[15vw] md:text-[10vw]
                                leading-[0.8] font-bold uppercase tracking-tight
                                text-gray-400">
                   Developer
@@ -98,8 +109,22 @@ export default function Hero({ preloaderDone }) {
               </a>
             </div>
 
+            <div className="flex-1 flex justify-center gap-1">
+              <button className="group w-10 h-10 rounded-full border border-gray-800
+                                 flex items-center justify-center
+                                 hover:border-platinum-50 transition-all duration-300">
+                <i className="ri-arrow-down-line text-base
+                               group-hover:translate-y-1 transition-transform duration-300" />
+              </button>
+              <button className="group w-10 h-10 rounded-full border border-gray-800
+                                 flex items-center justify-center
+                                 hover:border-platinum-50 transition-all duration-300">
+                <i className="ri-arrow-down-line text-base
+                               group-hover:translate-y-1 transition-transform duration-300" />
+              </button>
+            </div>
             {/* CENTER — LINKEDIN */}
-            <div className="flex-1 flex justify-center">
+            <div className="flex-1 flex justify-end">
               <a
                 href="https://linkedin.com/in/sparshbalodia"
                 target="_blank"
@@ -118,25 +143,12 @@ export default function Hero({ preloaderDone }) {
             </div>
 
             {/* RIGHT — ICON SET */}
-            <div className="flex-1 flex justify-end gap-1">
-              <button className="group w-10 h-10 rounded-full border border-gray-800
-                                 flex items-center justify-center
-                                 hover:border-platinum-50 transition-all duration-300">
-                <i className="ri-arrow-down-line text-base
-                               group-hover:translate-y-1 transition-transform duration-300" />
-              </button>
-              <button className="group w-10 h-10 rounded-full border border-gray-800
-                                 flex items-center justify-center
-                                 hover:border-platinum-50 transition-all duration-300">
-                <i className="ri-arrow-down-line text-base
-                               group-hover:translate-y-1 transition-transform duration-300" />
-              </button>
-            </div>
 
           </div>
         </div>
 
       </div>
     </section>
+    </>
   );
 }

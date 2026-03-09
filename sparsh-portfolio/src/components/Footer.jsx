@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function Footer() {
   const [time, setTime] = useState("");
+  const [year, setYear] = useState(new Date().getFullYear());
 
   // Live IST clock
   useEffect(() => {
@@ -17,6 +18,13 @@ export default function Footer() {
     return () => clearInterval(id);
   }, []);
 
+  useEffect(()=> {
+    const interval = setInterval(() => {
+      setYear(new Date().getFullYear());
+    }, 1000 * 60 *60 * 24);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <footer className="w-full bg-graphite-950 border-t border-gray-800
                        px-6 md:px-8 lg:px-12 xl:px-16 py-8
@@ -25,7 +33,7 @@ export default function Footer() {
       {/* Left — year + live time */}
       <div className="flex items-center gap-5">
         <span className="uppercase tracking-widest text-xs text-gray-500">
-          © 2026
+          &copy; {year} Sparsh Balodia
         </span>
         <span className="uppercase tracking-widest text-xs text-gray-500">
           {time}
@@ -35,17 +43,21 @@ export default function Footer() {
       {/* Right — social links */}
       <div className="flex items-center gap-6 md:gap-8">
         {[
-          { label: "LinkedIn",  href: "https://linkedin.com/in/sparshbalodia" },
-          { label: "Github",  href: "https://linkedin.com/in/sparshbalodia" },
-          { label: "x / Twitter",  href: "https://linkedin.com/in/sparshbalodia" },
-          { label: "Instagram", href: "https://instagram.com/sparshbalodia" },
+          { label: "Linkedin",  href: "https://linkedin.com/in/sparshbalodia" },
+          { label: "Github",  href: "https://github.com/sparshbalodia" },
+          { label: "x",  href: "https://x.com/sparsh_balodia" },
+          { label: "Instagram", href: "https://instagram.com/sparsh_balodia" },
         ].map(({ label, href }) => (
           <a
             key={label}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative uppercase tracking-widest text-xs font-bold text-gray-400 hover:text-platinum-50 transition-colors duration-300"
+            className={`group relative uppercase tracking-widest text-xs font-bold text-gray-400 hover:text-platinum-50 transition-colors duration-300 ${
+              label === "Linkedin" || label === "Github"
+                ? "hidden md:block"
+                : ""
+            }`}
           >
             {label}
 

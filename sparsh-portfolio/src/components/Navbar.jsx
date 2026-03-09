@@ -5,6 +5,7 @@ import MenuOverlay from "./MenuOverlay";
 
 export default function Navbar({ preloaderDone }) {
   const navRef = useRef();
+  const textRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -37,6 +38,20 @@ export default function Navbar({ preloaderDone }) {
     }
   };
 
+  const handleToggle = ()=> {
+    const el = textRef.current;
+    gsap.to(el, {
+      y: -16, opacity: 0, duration: 0.2, ease: "power2.in",
+      onComplete: ()=> {
+        setIsOpen((prev)=> !prev);
+        gsap.fromTo(el, 
+          { y:16, opacity: 0},
+          { y: 0, opacity:1, duration: 0.25, ease: "power2.out"}
+        );
+      },
+    });
+  };
+
   return (
     <>
       <header
@@ -60,7 +75,7 @@ export default function Navbar({ preloaderDone }) {
 
           {/* Single button — toggles between Menu and Close at same position */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={handleToggle}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="menu-overlay"
@@ -68,7 +83,7 @@ export default function Navbar({ preloaderDone }) {
                        text-sm text-gray-400 hover:text-platinum-50 transition-colors duration-300"
             style={{ opacity: preloaderDone ? undefined : 0 }}
           >
-            <span className="relative">
+            <span ref = {textRef} className="relative block">
               {isOpen ? "Close" : "Menu"}
               <span className="absolute left-0 -bottom-1 h-[1px] w-0 bg-platinum-50
                                transition-all duration-300 group-hover:w-full" />

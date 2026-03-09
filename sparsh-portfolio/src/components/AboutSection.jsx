@@ -35,8 +35,9 @@ export default function AboutSection() {
 
   return (
     <section
+      id="about"
       ref={sectionRef}
-      className="w-full bg-graphite-950 py-[14vw] px-6 md:pl-[38vw] md:pr-[8vw]"
+      className="w-full bg-graphite-950 py-[14vw] px-6 md:px-0 md:pl-[38vw] md:pr-[8vw]"
     >
       <div className="flex flex-col md:flex-row items-start md:items-center gap-12 md:gap-16 lg:gap-24 max-w-2xl">
 

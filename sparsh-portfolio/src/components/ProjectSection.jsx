@@ -112,6 +112,9 @@ export default function ProjectsSection() {
 
   /* ================= HOVER ================= */
   const handleEnter = (src, titleEl) => {
+
+    if (window.innerWidth < 768) return;
+
     const img = imgRef.current;
     if (!img) return;
 
@@ -153,8 +156,8 @@ export default function ProjectsSection() {
         ref={imgRef}
         src={PROJECTS[0].img}
         alt=""
-        className="absolute pointer-events-none z-[20]
-                   w-[12vw] h-auto object-cover rounded-sm
+        className="hidden md:block absolute pointer-events-none z-[20]
+                   w-[12vw] h-auto object-cover rounded-xl
                    opacity-0 scale-[0.88]"
         style={{ top: 0, left: 0 }}
       />

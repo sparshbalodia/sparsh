@@ -78,10 +78,10 @@ export default function Contact() {
                 <p className="uppercase tracking-widest text-xs text-gray-600 mb-2">Socials</p>
                 <div className="flex gap-6">
                   {[
-                    { label: "Github",    href: "https://github.com/sparshbalodia" },
                     { label: "LinkedIn",  href: "https://linkedin.com/in/sparshbalodia" },
-                    { label: "Instagram", href: "https://instagram.com/sparshbalodia" },
-                    { label: "X", href: "#"}
+                    { label: "Github",    href: "https://github.com/sparshbalodia" },
+                    { label: "X", href: "https://x.com/sparsh_balodia"},
+                    { label: "Instagram", href: "https://instagram.com/sparsh_balodia" },
                   ].map(({ label, href }) => (
                     <a
                       key={label}

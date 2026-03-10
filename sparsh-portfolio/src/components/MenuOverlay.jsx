@@ -1,9 +1,9 @@
 import { useLayoutEffect, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 
 const MENU_LINKS = [
-  { label: "Home",     type: "route",  path: "/" },
+  { label: "Home",     type: "scroll-top" },
   { label: "Projects", type: "route",  path: "/projects" },
   { label: "About",    type: "scroll", id: "about" },
   { label: "Contact",  type: "route",  path: "/contact" },
@@ -11,6 +11,8 @@ const MENU_LINKS = [
 
 export default function MenuOverlay({ isOpen, setIsOpen }) {
   const overlayRef = useRef();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useLayoutEffect(() => {
     gsap.set(overlayRef.current, { y: "-100%" });
@@ -61,7 +63,30 @@ export default function MenuOverlay({ isOpen, setIsOpen }) {
               style={{ gap: "clamp(0.25rem, 1.5vh, 1.5rem)" }}>
             {MENU_LINKS.map((item) => (
               <li key={item.label}>
-                {item.type === "route" ? (
+                {item.type === "scroll-top" ? (
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                      if (location.pathname !== "/") {
+                        navigate("/");
+                        // ScrollToTop handles it on route change
+                      } else {
+                        // Already on home — Lenis scroll to top manually
+                        window.lenis?.scrollTo(0, { immediate: true });
+                      }
+                    }}
+                    style={{ fontSize: "clamp(3rem, 10vw, 7rem)", lineHeight: 1 }}
+                    className="menu-item relative group block font-bold uppercase
+                               tracking-tight text-gray-400 hover:text-platinum-50
+                               transition-colors duration-300 text-left w-full"
+                  >
+                    <span className="relative">
+                      {item.label}
+                      <span className="absolute left-0 -bottom-0 h-[2px] w-0 bg-platinum-50
+                                       transition-all duration-500 group-hover:w-full" />
+                    </span>
+                  </button>
+                ) : item.type === "route" ? (
                   <Link
                     to={item.path}
                     onClick={() => setIsOpen(false)}

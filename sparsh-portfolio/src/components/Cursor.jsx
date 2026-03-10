@@ -1,10 +1,18 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 export default function Cursor() {
   const cursorRef = useRef(null);
+  const [isTouch, setIsTouch] = useState(false);
+
+   useEffect(() => {
+    // Check if touch device — if so, don't render cursor
+    setIsTouch(window.matchMedia("(hover: none)").matches);
+  }, []);
 
   useEffect(() => {
+    if (isTouch) return;
+
     const cursor = cursorRef.current;
 
     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
@@ -132,7 +140,9 @@ export default function Cursor() {
       document.removeEventListener("mouseover", onHoverIn);
       document.removeEventListener("mouseout", onHoverOut);
     };
-  }, []);
+  }, [isTouch]);
+
+   if (isTouch) return null;
 
   return (
     <div

@@ -14,6 +14,8 @@ export default function useLenis() {
       smoothTouch: false,     // keep native on touch devices (better UX)
     });
 
+    window.lenis = lenis;
+
     // Connect Lenis to GSAP ScrollTrigger so scroll-based animations
     // stay in sync with the smooth scroll position
     lenis.on("scroll", ScrollTrigger.update);
@@ -27,6 +29,7 @@ export default function useLenis() {
 
     return () => {
       lenis.destroy();
+      window.lenis = null;
       gsap.ticker.remove((time) => lenis.raf(time * 1000));
     };
   }, []);

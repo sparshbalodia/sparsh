@@ -75,7 +75,7 @@ export default function AboutSection() {
                          hover:border-platinum-50 hover:text-platinum-50
                          transition-all duration-300"
             >
-              Let's Talk
+              Get In Touch
               <span className="text-base leading-none">↗</span>
             </Link>
           </div>

@@ -4,7 +4,7 @@ Personal portfolio website showcasing my projects, and creative experiments in w
 
 Built using **React (Vite), Tailwind CSS, and GSAP** to deliver smooth animations and a modern user experience.
 
-🌐 [Live Portfolio](https://sparsh-blue.vercel.app "Sparsh Balodia Portfolio")
+🌐 [Live Portfolio](https://sparshbalodia.vercel.app "Sparsh Balodia Portfolio")
 
 ---
 

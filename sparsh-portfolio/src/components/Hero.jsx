@@ -4,12 +4,12 @@ import { gsap } from "gsap";
 export default function Hero({ preloaderDone }) {
   const heroRef = useRef();
 
-  // Step 1 — Always hide elements immediately on mount before any paint.
+  // Always hide elements immediately on mount before any paint.
   useLayoutEffect(() => {
     gsap.set(".boundingelem", { opacity: 0, y: 120 });
   }, []);
 
-  // Step 2 — Animate in only after preloader has fully exited.
+  // Animate in only after preloader has fully exited.
   useLayoutEffect(() => {
     if (!preloaderDone) return;
 
@@ -109,21 +109,34 @@ export default function Hero({ preloaderDone }) {
               </a>
             </div>
 
-            <div className="flex-1 flex justify-center gap-1">
-              <button className="group w-10 h-10 rounded-full border border-gray-800
-                                 flex items-center justify-center
-                                 hover:border-platinum-50 transition-all duration-300">
-                <i className="ri-arrow-down-line text-base
-                               group-hover:translate-y-1 transition-transform duration-300" />
-              </button>
-              <button className="group w-10 h-10 rounded-full border border-gray-800
-                                 flex items-center justify-center
-                                 hover:border-platinum-50 transition-all duration-300">
-                <i className="ri-arrow-down-line text-base
-                               group-hover:translate-y-1 transition-transform duration-300" />
-              </button>
-            </div>
-            {/* CENTER — LINKEDIN */}
+              {/* CENTER — RESUME BUTTONS */}
+          <div className="flex-1 flex justify-center gap-1">
+            {/* Download resume */}
+            <a
+              href="/resume.pdf"
+              download
+              className="group w-10 h-10 rounded-full border border-gray-800
+                         flex items-center justify-center
+                         hover:border-platinum-50 transition-all duration-300"
+            >
+              <i className="ri-download-line text-base
+                            group-hover:translate-y-1 transition-transform duration-300" />
+            </a>
+
+            {/* View resume */}
+            <a                          
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-10 h-10 rounded-full border border-gray-800
+                         flex items-center justify-center
+                         hover:border-platinum-50 transition-all duration-300"
+            >
+              <i className="ri-eye-line text-base" />
+            </a>
+          </div>
+
+            {/* RIGHT — LINKEDIN */}
             <div className="flex-1 flex justify-end">
               <a
                 href="https://linkedin.com/in/sparshbalodia"
@@ -141,8 +154,6 @@ export default function Hero({ preloaderDone }) {
                 <i className="ri-arrow-right-up-line text-sm ml-2" />
               </a>
             </div>
-
-            {/* RIGHT — ICON SET */}
 
           </div>
         </div>

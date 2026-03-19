@@ -12,6 +12,8 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 
+import { Analytics } from "@vercel/analytics/react"
+
 export default function App() {
 
   const [preloaderDone, setPreloaderDone] = useState(false);
@@ -36,6 +38,8 @@ export default function App() {
       </Routes>
 
       <Footer />
+
+      <Analytics />
     </div>
   );
 }
